@@ -14,7 +14,16 @@ response.setDateHeader("Expires",-1);
 %>
 </head>
 <body>
-<a href="../LogoutSer">Logout</a>
+<ul>
+<li><a href="../LogoutSer">Logout</a></li>
+<li><a href="changepassword.jsp">Change Password</a></li>
+<li><a href="deleteprofile.jsp">Delete Profile</a></li>
+<li><a href="addsubadmin.jsp">Add Subadmin</a></li>
+</ul>
+
+
+
+
 <%
 if(session.getAttribute("isloggedin")==null)
 {

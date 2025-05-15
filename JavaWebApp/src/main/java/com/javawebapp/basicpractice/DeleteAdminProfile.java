@@ -1,29 +1,27 @@
 package com.javawebapp.basicpractice;
 
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.java.databasehelper.Datahelper;
 
 /**
- * Servlet implementation class LoginSer
+ * Servlet implementation class DeleteAdminProfile
  */
-@WebServlet("/LoginSer")
-public class LoginSer extends HttpServlet {
+@WebServlet("/DeleteAdminProfile")
+public class DeleteAdminProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginSer() {
+    public DeleteAdminProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,40 +32,24 @@ public class LoginSer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uname = request.getParameter("uname");
 		String upass = request.getParameter("upass");
+		PrintWriter out = response.getWriter();
 		try
 		{
 		Datahelper.connect();
-		ResultSet res = Datahelper.verifyLogin(uname, upass);
-		if(res.next())
+		int res = Datahelper.deleteProfile(uname);
+		if(res>0)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("isloggedin",true);
-			session.setAttribute("ukey",uname);
-			
-			
-			response.sendRedirect("adminmodule/admindashboard.jsp");
+			out.print("profile deleted");
 		}
 		else
 		{
-			response.sendRedirect("LoginForm.jsp?error=invalid userid and password");
+			out.print("profile not deleted");
 		}
-		
 		}
 		catch(Exception ex)
 		{
-			
+			out.print(ex.getMessage().toString());
 		}
-		/*if(uname.equals("admin") && upass.equals("admin")) {
-			HttpSession session = request.getSession();
-			session.setAttribute("isloggedin",true);
-			
-			
-			response.sendRedirect("adminmodule/admindashboard.jsp");
-		}
-		else
-		{
-			response.sendRedirect("LoginForm.jsp?error=invalid userid and password");
-		}*/
 	}
 
 }
