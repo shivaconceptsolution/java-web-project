@@ -14,9 +14,24 @@ public class Datahelper {
 	   conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb","root","");
 	   st = conn.createStatement();
    }
+   public static int UserReg(String username,String password,String email,String mobile) throws SQLException
+   {
+	   
+	   String salt = "SCS123";
+       String hashedPassword = PasswordGenerator.hashPassword(password, salt);
+	   int data = st.executeUpdate("insert into registration(username,password,email,mobile) values('"+username+"','"+hashedPassword+"','"+email+"','"+mobile+"')");
+	   return data;
+   }
    public static ResultSet verifyLogin(String username,String password) throws SQLException
    {
 	   ResultSet data = st.executeQuery("select * from admin where username='"+username+"' and password='"+password+"'");
+	   return data;
+   }
+   public static ResultSet verifyUser(String username,String password) throws SQLException
+   {
+	   String salt = "SCS123";
+       String hashedPassword = PasswordGenerator.hashPassword(password, salt);
+	   ResultSet data = st.executeQuery("select * from registration where username='"+username+"' and password='"+hashedPassword+"'");
 	   return data;
    }
    public static ResultSet getAdminData(String username) throws SQLException
