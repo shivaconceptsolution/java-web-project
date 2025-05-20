@@ -3,9 +3,11 @@ package com.javawebapp.basicpractice;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.time.Duration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,9 +46,16 @@ public class LoginUserSer extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("isloggedin1",true);
 			session.setAttribute("ukey1",uname);
-			
-			
-			response.sendRedirect("usermodule/userdashboard.jsp");
+			if(request.getParameter("remember")!=null)
+			{
+			Cookie ref1 = new Cookie("ukey",uname);
+			ref1.setMaxAge(1200000);
+			response.addCookie(ref1);
+			Cookie ref2 = new Cookie("upass",upass);
+			ref2.setMaxAge(1200000);
+			response.addCookie(ref2);
+			}
+            response.sendRedirect("usermodule/userdashboard.jsp");
 		}
 		else
 		{

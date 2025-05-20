@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="../UserLogin.jsp">Logout</a>
 </body>
 </html>

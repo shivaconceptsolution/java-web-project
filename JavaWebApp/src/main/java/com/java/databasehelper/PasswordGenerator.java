@@ -29,15 +29,5 @@ public class PasswordGenerator {
         }
     }
 	
-	public static String generateSalt() {
-        Random random = new Random();
-        byte[] bytes = new byte[16];
-        random.nextBytes(bytes);
-        StringBuilder sb = new StringBuilder();
-        for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
-        }
-        return sb.toString();
-    }
-
+	
 }

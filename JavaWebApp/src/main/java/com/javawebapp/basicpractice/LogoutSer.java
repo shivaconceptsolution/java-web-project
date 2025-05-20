@@ -3,6 +3,7 @@ package com.javawebapp.basicpractice;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,11 @@ public class LogoutSer extends HttpServlet {
 		HttpSession ref = request.getSession();
 		ref.removeAttribute("isloggedin");
 		ref.invalidate();
+		Cookie ref1 = new Cookie("ukey","");
+		ref1.setMaxAge(-1);
+		response.addCookie(ref1);
+		Cookie ref2 = new Cookie("upass","");
+		response.addCookie(ref2);
 		response.sendRedirect("LoginForm.jsp");
 	}
 
