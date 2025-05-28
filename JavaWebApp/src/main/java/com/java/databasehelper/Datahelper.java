@@ -27,6 +27,12 @@ public class Datahelper {
 	   ResultSet data = st.executeQuery("select * from admin where username='"+username+"' and password='"+password+"'");
 	   return data;
    }
+   
+   public static ResultSet verifyEmail(String email) throws SQLException
+   {
+	   ResultSet data = st.executeQuery("select * from registration where email='"+email+"'");
+	   return data;
+   }
    public static ResultSet verifyUser(String username,String password) throws SQLException
    {
 	   String salt = "SCS123";
