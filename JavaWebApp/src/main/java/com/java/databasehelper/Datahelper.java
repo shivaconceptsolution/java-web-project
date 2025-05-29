@@ -14,6 +14,16 @@ public class Datahelper {
 	   conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb","root","");
 	   st = conn.createStatement();
    }
+   public static int UploadFile(String fname) throws SQLException
+   {
+	   int data = st.executeUpdate("insert into dataupload(path) values('"+fname+"')");
+	   return data;
+   }
+   public static ResultSet ShowFile() throws SQLException
+   {
+	   ResultSet data = st.executeQuery("select * from dataupload");
+	   return data;
+   }
    public static int UserReg(String username,String password,String email,String mobile) throws SQLException
    {
 	   
