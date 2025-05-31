@@ -14,6 +14,23 @@ public class Datahelper {
 	   conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javadb","root","");
 	   st = conn.createStatement();
    }
+   public static ResultSet showallcountry() throws SQLException
+   {
+	   ResultSet data = st.executeQuery("select * from country");
+	   return data;
+   }
+   public static ResultSet showallstate(int countryid) throws SQLException
+   {
+	   ResultSet data = st.executeQuery("select * from state where countryid='"+countryid+"'");
+	   
+	   return data;
+   }
+   public static ResultSet showallcity(int stateid) throws SQLException
+   {
+	   ResultSet data = st.executeQuery("select * from city where stateid='"+stateid+"'");
+	   
+	   return data;
+   }
    public static int UploadFile(String fname) throws SQLException
    {
 	   int data = st.executeUpdate("insert into dataupload(path) values('"+fname+"')");
