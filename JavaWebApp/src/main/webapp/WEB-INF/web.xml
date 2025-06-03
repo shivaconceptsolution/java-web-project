@@ -6,4 +6,21 @@
     <welcome-file>index.jsp</welcome-file>
    
   </welcome-file-list>
+  
+  <servlet>
+  <servlet-name>Welcome</servlet-name>
+  <servlet-class>com.javawebapp.basicpractice.Welcome</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>Welcome</servlet-name>
+  <url-pattern>/ram</url-pattern>
+  </servlet-mapping>
+  <filter>
+        <filter-name>MyFilter</filter-name>
+        <filter-class>com.javawebapp.basicpractice.MyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>MyFilter</filter-name>
+        <url-pattern>/ram</url-pattern>
+    </filter-mapping>
 </web-app>
