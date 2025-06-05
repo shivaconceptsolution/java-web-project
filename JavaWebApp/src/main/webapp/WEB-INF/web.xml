@@ -3,11 +3,10 @@
   <display-name>JavaWebApp</display-name>
   <welcome-file-list>
     
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>FrontController</welcome-file>
    
   </welcome-file-list>
-  
-  <servlet>
+   <servlet>
   <servlet-name>Welcome</servlet-name>
   <servlet-class>com.javawebapp.basicpractice.Welcome</servlet-class>
   </servlet>
